@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,maximum-scale=1.0,minimum-scale=1.0,initial-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-compatible" content="IE=edge,chrome=1.0">
+    <meta name="format-detection" content="telephone=no,email=no,address=no"></title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="icon/iconfont.css">
+    <link rel="stylesheet" href="css/swiper.min.css">
+</head>
+<body>
+    <header>
+        <a href="javascript:;"><img src="img/logo.png" alt=""></a>
+        <a href="javascript:;" class="iconfont">&#xe729;</a>
+        <a href="javascript:;" class="iconfont">&#xe6f9;</a>
+    </header>
+    <section>
+        <div class="swiper-container connection">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide slide">
+                    <img src="img/banner1.jpg" alt="">
+                </div>
+                <div class="swiper-slide slide">
+                    <img src="img/banner2.jpg" alt="">
+                </div>
+                <div class="swiper-slide slide">
+                    <img src="img/banner3.jpg" alt="">
+                </div>
+                <div class="swiper-slide slide">
+                    <img src="img/banner4.jpg" alt="">
+                </div>
+                 <div class="swiper-slide slide">
+                    <img src="img/banner5.jpg" alt="">
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="xx">
+            <p><span><em class="iconfont">&#xe65e;</em>京华时报肯定上课的萨克斯</span><span>2017-11-01</span></p>
+            <p><span><em class="iconfont">&#xe65e;</em>京华时报肯定上课的萨克斯</span><span>2017-11-01</span></p>
+        </div>
+        <div class="fw">便捷服务</div>
+        <div class="tw">
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>掌上银行下载</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>行情数据</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>图说农行</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>商业机构查询</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>在线预约排队</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>信用卡申请</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>智能客服</dd>
+            </dl>
+            <dl>
+                <dt class="iconfont">&#xe662;</dt>
+                <dd>WAP网银登陆</dd>
+            </dl>
+        </div>
+        <div class="lx">你的每段旅行， 我们全新陪伴</div>
+        <div class="main">
+            <p>
+                <span>学生时代</span><span>∨</span>
+            </p>
+            <img src="img/tab_content_bg3_mobile.jpg" alt="">
+            <ul  class="ul">
+                
+            </ul>
+        </div>
+        <div class="main">
+            <p>
+                <span>学生时代</span><span>∨</span>
+            </p>
+            <img src="img/tab_content_bg3_mobile.jpg" alt="">
+            <ul  class="ul">
+                
+            </ul>
+        </div>
+        <div class="main">
+            <p>
+                <span>学生时代</span><span>∨</span>
+            </p>
+            <img src="img/tab_content_bg3_mobile.jpg" alt="">
+            <ul  class="ul">
+                
+            </ul>
+        </div>
+        <div class="main">
+            <p>
+                <span>学生时代</span><span>∨</span>
+            </p>
+            <img src="img/tab_content_bg3_mobile.jpg" alt="">
+            <ul class="ul">
+                
+            </ul>
+        </div>
+    </section>
+    <script src="js/swiper.js"></script>
+	<script>
+		var banner=new Swiper(".connection",{
+			autoplay:1000,
+			pagination: '.swiper-pagination',
+			loop: true,
+            paginationClickable:true,
+            autoplayDisableOnInteraction:false
+        });
+        var ul =document.querySelectorAll(".ul");
+        function ajax(url) {
+            return new Promise(function (resolve, reject) {
+                var xhr = null;
+                var handler = function (){
+                    if(xhr.readyState !== 4) return;
+                    if(xhr.status == 200){
+                        resolve(xhr.responseText);
+                    }else{
+                        reject(new Error(xhr.statusText));
+                    }
+                }
+                if (window.XMLHttpRequest) {
+                    xhr = new XMLHttpRequest();
+                } else {
+                    xhr = new ActiveXObject("Microsoft.XMLHTTP");
+                }
+                xhr.open("get", url, true);
+                xhr.send();
+                xhr.onreadystatechange = handler;
+            })
+        }
+        ajax("http://localhost:8080").then(function (data) {
+            var arr =JSON.parse(data);
+            var str="";
+            for(i in arr.li){
+                str+="<li>"+arr.li[i]+"</li>"
+            }
+            for(var i=0;i<ul.length;i++){
+                ul[i].innerHTML=str;
+            } 
+        })
+	</script>
+</body>
+</html>
